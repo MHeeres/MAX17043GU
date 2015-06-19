@@ -25,7 +25,7 @@ float MAX17043GU::voltageLevel() {
   vcell = i2cRead16(0x02);
   vcell = vcell >> 4;  // last 4 bits of vcell are nothing
   
-  return (float) vcell * (5/4096);
+  return (float)vcell * 5/4096;
 }
 
 float MAX17043GU::fuelLevel() {

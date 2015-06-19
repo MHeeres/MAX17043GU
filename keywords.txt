@@ -6,4 +6,4 @@ init	KEYWORD2
 config	KEYWORD2
 restart	KEYWORD2
 voltageLevel	KEYWORD2
-fluelLevel	KEYWORD2
+fuelLevel	KEYWORD2

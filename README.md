@@ -9,7 +9,7 @@ Turned into a library from [Sparkfun's](https://www.sparkfun.com) example code f
 
 ## Functions
 Set up and set the I2C address  
-`MAX17043GU(byte address)`
+`MAX17043GU(int address)`
 
 Set the percentage [0-32] for the low battery warning  
 `setLowBattery(byte percent)`
@@ -44,6 +44,7 @@ void setup()
 	delay(100);
 	// Set battery alarm to 20%
 	battery.setLowBattery(20);
+	battery.restart();
 }
 
 void loop() 
