@@ -1,0 +1,9 @@
+# Main
+MAX17043GU	KEYWORD1
+
+# Functions
+init	KEYWORD2
+config	KEYWORD2
+restart	KEYWORD2
+voltageLevel	KEYWORD2
+fluelLevel	KEYWORD2
