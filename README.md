@@ -12,7 +12,7 @@ Set up and set the I2C address
 `MAX17043GU(byte address)`
 
 Set the percentage [0-32] for the low battery warning  
-`MAX17043GU::config(byte percentage)`
+`setLowBattery(byte percent)`
 
 Restart the calculations  
 `restart()`
@@ -25,6 +25,7 @@ Get the battery level
 
 ## Example
 ```
+#include <Wire.h>
 #include <MAX17043GU.h>
 
 #define MAX17043_ADDRESS 0x36
@@ -41,6 +42,8 @@ void setup()
 	// Start I2C
 	Wire.begin();
 	delay(100);
+	// Set battery alarm to 20%
+	battery.setLowBattery(20);
 }
 
 void loop() 
