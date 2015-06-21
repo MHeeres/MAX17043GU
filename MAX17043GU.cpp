@@ -7,32 +7,32 @@ MAX17043GU::MAX17043GU(int address) {
 
 void MAX17043GU::setLowBattery(byte percent) {
   if ((percent >= 32)||(percent == 0))  // Anything 32 or greater will set to 32%
-    i2cWrite16(0x9700, 0x0C);
+    i2cWrite16(0x9700, MAX17043GU_REG_CONFIG);
   else
   {
     byte percentBits = 32 - percent;
-    i2cWrite16((0x9700 | percentBits), 0x0C);
+    i2cWrite16((0x9700 | percentBits), MAX17043GU_REG_CONFIG);
   }
 }
 
 void MAX17043GU::restart() {
-  i2cWrite16(0x4000, 0x06);  // Write a 0x4000 to the MODE register
+  i2cWrite16(MAX17043GU_MODE_RESTART, MAX17043GU_REG_MODE);  // Write a 0x4000 to the MODE register
 }
 
 float MAX17043GU::voltageLevel() {
   unsigned int vcell;
   
-  vcell = i2cRead16(0x02);
+  vcell = i2cRead16(MAX17043GU_REG_VOLTAGE);
   vcell = vcell >> 4;  // last 4 bits of vcell are nothing
   
-  return (float)vcell * 5/4096;
+  return (float)vcell * MAX17043GU_VOLTAGE_INCEMENTS;
 }
 
 float MAX17043GU::fuelLevel() {
   unsigned int soc;
   float percent;
   
-  soc = i2cRead16(0x04);  // Read SOC register of MAX17043
+  soc = i2cRead16(MAX17043GU_REG_STATEOFCHARGE);  // Read SOC register of MAX17043
   percent = (byte) (soc >> 8);  // High byte of SOC is percentage
   percent += ((float)((byte)soc))/256;  // Low byte is 1/256%
   
